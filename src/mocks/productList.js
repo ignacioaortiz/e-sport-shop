@@ -10,6 +10,7 @@ const productList = [
     name: 'Cap',
     price: 32.99,
     images: img1,
+    description: 'Made in Nylon for a sporty silhouette',
     stock: 100,
   },
   {
