@@ -1,10 +1,15 @@
+import { Link } from 'react-router-dom';
 import { Item } from '../components/Item';
 
 const ItemList = ({ products }) => {
   return (
     <>
       {products.map(product => {
-        return <Item key={product.id} product={product} />;
+        return (
+          <Link to={`/item/${product.id}`}>
+            <Item key={product.id} product={product} />
+          </Link>
+        );
       })}
     </>
   );

@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import productList from '../mocks/productList';
 import { ItemDetail } from '../components/ItemDetail';
+import { useParams } from 'react-router';
 
 const ItemDetailContainer = () => {
+  let id = useParams();
+  let userID = id.id;
   const [items, setItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -10,7 +13,7 @@ const ItemDetailContainer = () => {
     setIsLoading(true);
     const getItem = new Promise((resolve, reject) => {
       setTimeout(() => {
-        resolve(productList[0]);
+        resolve(productList[userID]);
       }, 2000);
     });
 

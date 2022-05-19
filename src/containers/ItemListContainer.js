@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ItemCount } from '../components/ItemCount';
 import { ItemList } from '../components/ItemList';
 import productList from '../mocks/productList';
+import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({ greeting }) => {
   /* -- Contador -- */
@@ -27,11 +28,18 @@ const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const { category } = useParams();
+
   useEffect(() => {
     setIsLoading(true);
     const myPromise = new Promise((resolve, reject) => {
+      const productosFiltrados = productList.filter(prod => prod.category === category);
       setTimeout(() => {
-        resolve(productList);
+        if (category === undefined) {
+          resolve(productList);
+        } else {
+          resolve(productosFiltrados);
+        }
       }, 3000);
     });
 
@@ -39,7 +47,7 @@ const ItemListContainer = ({ greeting }) => {
       setProducts(result);
       setIsLoading(false);
     });
-  }, []);
+  }, [category]);
 
   if (isLoading) {
     return (

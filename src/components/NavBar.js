@@ -1,4 +1,5 @@
 import { CartWidget } from './CartWidget';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
@@ -17,20 +18,25 @@ const NavBar = () => {
             </svg>
           </label>
           <ul tabIndex='0' className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'>
-            <li>
+            <Link to='/'>
               <a>Home</a>
+            </Link>
+            <li class='menu-title'>
+              <span>Shop</span>
             </li>
-            <li>
-              <a>Shop</a>
-            </li>
-            <li>
-              <a>About</a>
-            </li>
+            <Link to='category/Pro_Kit'>
+              <a>Pro Kit</a>
+            </Link>
+            <Link to='category/Crest_Collection'>
+              <a>Crest Collection</a>
+            </Link>
           </ul>
         </div>
       </div>
       <div className='navbar-center'>
-        <a className='btn btn-ghost normal-case text-xl'>medusa e-sports</a>
+        <Link to='/'>
+          <a className='btn btn-ghost normal-case text-xl'>medusa e-sports</a>
+        </Link>
       </div>
       <CartWidget />
     </div>
