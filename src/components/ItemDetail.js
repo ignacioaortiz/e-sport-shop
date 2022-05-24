@@ -1,16 +1,43 @@
+import { useState } from 'react';
+import { ItemCount } from './ItemCount';
+import { Link } from 'react-router-dom';
+
 const ItemDetail = ({ items }) => {
+  const [count, setCount] = useState(1);
+  const [irCart, setIrCart] = useState(false);
+
+  const onAdd = stock => {
+    if (count < stock) {
+      setCount(count + 1);
+    }
+  };
+
+  const onSubtract = () => {
+    if (count > 1) {
+      setCount(count - 1);
+    }
+  };
+
+  const onBuy = () => {
+    alert(`Su compra de ${count} articulos fue exitosa`);
+    setIrCart(true);
+  };
+
   return (
-    <div class='card card-side w-92 bg-base-100 shadow-xl my-4 mx-2'>
+    <div className='card card-side w-92 bg-base-100 shadow-xl my-4 mx-2'>
       <figure>
         <img src={items.images} alt='Movie' />
       </figure>
-      <div class='card-body justify-center'>
-        <h2 class='card-title justify-center'>{items.name}</h2>
+      <div className='card-body justify-center'>
+        <h2 className='card-title justify-center'>{items.name}</h2>
         <p>{items.price}</p>
-        <p className='text-xs'>{items.description}</p>
-        <div class='card-actions justify-end'>
-          <button class='btn btn-primary'>Buy</button>
-        </div>
+        {irCart ? (
+          <button className='btn btn-primary mt-4'>
+            <Link to={'/cart'}>Ir al Carrito</Link>
+          </button>
+        ) : (
+          <ItemCount stock={5} count={count} onSubtract={onSubtract} onAdd={onAdd} onBuy={onBuy} />
+        )}
       </div>
     </div>
   );

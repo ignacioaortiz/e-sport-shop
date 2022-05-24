@@ -53,7 +53,7 @@ const ItemListContainer = ({ greeting }) => {
     return (
       <svg
         role='status'
-        class='w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
+        className='w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600'
         viewBox='0 0 100 101'
         fill='none'
         xmlns='http://www.w3.org/2000/svg'
@@ -83,7 +83,7 @@ const ItemListContainer = ({ greeting }) => {
             deleniti eaque aut repudiandae et a id nisi.
           </p>
           <button className='btn btn-primary mb-4'>{greeting}</button>
-          <ItemCount stock={5} count={count} onAdd={onAdd} onSubtract={onSubtract} />
+          {/* <ItemCount stock={5} count={count} onAdd={onAdd} onSubtract={onSubtract} /> */}
           <ItemList products={products} />
         </div>
       </div>
