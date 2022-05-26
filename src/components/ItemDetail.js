@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { ItemCount } from './ItemCount';
 import { Link } from 'react-router-dom';
+import { CartContext } from '../context/CartContext';
 
-const ItemDetail = ({ items }) => {
+const ItemDetail = () => {
   const [count, setCount] = useState(1);
   const [irCart, setIrCart] = useState(false);
+  const [items, setItems, addItem] = useContext(CartContext);
 
   const onAdd = stock => {
     if (count < stock) {
@@ -21,6 +23,7 @@ const ItemDetail = ({ items }) => {
   const onBuy = () => {
     alert(`Su compra de ${count} articulos fue exitosa`);
     setIrCart(true);
+    addItem({ items: items, quantity: count });
   };
 
   return (
