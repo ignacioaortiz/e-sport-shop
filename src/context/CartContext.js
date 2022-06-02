@@ -1,21 +1,43 @@
 import { createContext, useState } from 'react';
 import productList from '../mocks/productList';
 
-export const CartContext = createContext();
+export const CartContext = createContext([]);
 
-export const ItemsProvider = ({ children }) => {
-  const [items, setItems] = useState(productList);
+export const CartContextProvider = ({ children }) => {
+  const [cartList, setCartList] = useState(productList);
 
-  const isInCart = id => {
-    return items.findIndex(prod => prod.id === id);
-  };
+  function addToCart(product) {
+    const index = cartList.findIndex(p => p.id === product.id);
 
-  const addItem = items => {
-    if (isInCart(items.item.id) === -1) {
-      setItems(items);
+    if (index > -1) {
+      const oldItem = cartList[index].cantidad;
+      cartList.splice(index, 1);
+      setCartList([...cartList, { ...product, cantidad: product.cantidad + oldItem }]);
     } else {
+      setCartList([...cartList, product]);
     }
+  }
+
+  const removeProduct = id => {
+    const filteredCart = cartList.filter(product => product.id !== id);
+    setCartList(filteredCart);
   };
 
-  return <CartContext.Provider value={[items, setItems, addItem]}>{children}</CartContext.Provider>;
+  const emptyCart = () => {
+    setCartList([]);
+  };
+
+  const cartCounter = () => {
+    return cartList.reduce((prev, prod) => prev + prod.cantidad, 0);
+  };
+
+  const totalBuy = () => {
+    return cartList.reduce((prev, prod) => prev + prod.cantidad * prod.price);
+  };
+
+  return (
+    <CartContext.Provider value={{ cartList, addToCart, removeProduct, emptyCart, cartCounter, totalBuy }}>
+      {children}
+    </CartContext.Provider>
+  );
 };

@@ -1,28 +1,9 @@
 import { useState, useEffect } from 'react';
-import { ItemCount } from '../components/ItemCount';
 import { ItemList } from '../components/ItemList';
 import productList from '../mocks/productList';
 import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({ greeting }) => {
-  /* -- Contador -- */
-
-  const [count, setCount] = useState(1);
-
-  const onAdd = stock => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-  };
-
-  const onSubtract = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-
-  /* -------------------------- */
-
   /* -- Items -- */
 
   const [products, setProducts] = useState([]);
