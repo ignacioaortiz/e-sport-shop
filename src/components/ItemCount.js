@@ -1,22 +1,27 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
 
-const ItemCount = ({ stock, count, onAdd, onSubtract, onBuy }) => {
+const ItemCount = ({ initial, stock, onAdd }) => {
+  const [count, setCount] = useState(initial);
+
+  const handlerAdd = () => {
+    count < stock ? setCount(count + 1) : alert('Superaste el stock de productos :(');
+  };
+
+  const handlerRm = () => {
+    if (count > initial) setCount(count - 1);
+  };
+
   return (
     <div className='btn-group w-24 justify-center'>
-      <button className='btn btn-xs' onClick={onSubtract}>
+      <button className='btn btn-xs' onClick={handlerRm}>
         -
       </button>
       <button className='btn btn-xs'>{count}</button>
-      <button
-        className='btn btn-xs'
-        onClick={() => {
-          onAdd(stock);
-        }}
-      >
+      <button className='btn btn-xs' onClick={handlerAdd}>
         +
       </button>
       <div className='card-actions'>
-        <button className='btn btn-primary mt-4' onClick={onBuy}>
+        <button className='btn btn-primary mt-4' onClick={() => onAdd(count)}>
           Buy
         </button>
       </div>

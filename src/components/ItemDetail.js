@@ -4,42 +4,38 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 
 const ItemDetail = ({ items }) => {
-  const [count, setCount] = useState(1);
-  const [irCart, setIrCart] = useState(false);
-  const { addToCart, cartList } = useContext(CartContext);
+  const { addToCart } = useContext(CartContext);
 
-  const onAdd = stock => {
-    if (count < stock) {
-      setCount(count + 1);
-    }
-  };
-
-  const onSubtract = () => {
-    if (count > 1) {
-      setCount(count - 1);
-    }
-  };
-
-  const onBuy = cantidad => {
-    alert(`Su compra de ${count} articulos fue exitosa`);
-    setIrCart(true);
+  const handlerOnAdd = cantidad => {
+    setwasClicked(true);
     addToCart({ ...items, cantidad: cantidad });
   };
+
+  const [wasClicked, setwasClicked] = useState(false);
 
   return (
     <div className='card card-side w-92 bg-base-100 shadow-xl my-4 mx-2'>
       <figure>
-        <img src={items.images} alt='Movie' />
+        <img src={items.images} />
       </figure>
       <div className='card-body justify-center'>
         <h2 className='card-title justify-center'>{items.name}</h2>
         <p>{items.price}</p>
-        {irCart ? (
-          <button className='btn btn-primary mt-4'>
-            <Link to={'/cart'}>Ir al Carrito</Link>
-          </button>
+        {wasClicked ? (
+          <>
+            <div className='card-actions justify-center'>
+              <Link to='/'>
+                {' '}
+                <button className='btn btn-primary btn-sm'> Seguir comprando </button>
+              </Link>
+              <Link to='/cart'>
+                {' '}
+                <button className='btn btn-primary btn-sm'> Ir al Carrito </button>
+              </Link>
+            </div>
+          </>
         ) : (
-          <ItemCount stock={5} count={count} onSubtract={onSubtract} onAdd={onAdd} onBuy={onBuy} />
+          <ItemCount initial={1} stock={5} onAdd={handlerOnAdd} />
         )}
       </div>
     </div>

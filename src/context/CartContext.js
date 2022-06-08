@@ -1,10 +1,14 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useContext } from 'react';
 import productList from '../mocks/productList';
 
 export const CartContext = createContext([]);
 
+export const useCartContext = () => {
+  return useContext(CartContext);
+};
+
 export const CartContextProvider = ({ children }) => {
-  const [cartList, setCartList] = useState(productList);
+  const [cartList, setCartList] = useState([]);
 
   function addToCart(product) {
     const index = cartList.findIndex(p => p.id === product.id);
@@ -28,11 +32,11 @@ export const CartContextProvider = ({ children }) => {
   };
 
   const cartCounter = () => {
-    return cartList.reduce((prev, prod) => prev + prod.cantidad, 0);
+    return cartList.reduce((prev, prod) => (prev = prev + prod.cantidad), 0);
   };
 
   const totalBuy = () => {
-    return cartList.reduce((prev, prod) => prev + prod.cantidad * prod.price);
+    return cartList.reduce((prev, prod) => prev + prod.cantidad * prod.price, 0);
   };
 
   return (
