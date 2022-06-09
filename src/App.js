@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 
 //FIREBASE - FIRESTORE
 import { collection, query, getDocs } from 'firebase/firestore';
-
 import { db } from './firebase/firebaseConfig';
 
 function App() {
@@ -17,7 +16,7 @@ function App() {
 
   useEffect(() => {
     const getProducts = async () => {
-      const q = query(collection(db, 'nombre collection en firebase'));
+      const q = query(collection(db, 'products'));
       const docs = [];
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(doc => {
