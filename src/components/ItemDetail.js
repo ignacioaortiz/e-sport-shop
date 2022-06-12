@@ -16,7 +16,7 @@ const ItemDetail = ({ items }) => {
   return (
     <div className='card card-side w-92 bg-base-100 shadow-xl my-4 mx-2'>
       <figure>
-        <img src={items.images} />
+        <img src={items.img} />
       </figure>
       <div className='card-body justify-center'>
         <h2 className='card-title justify-center'>{items.name}</h2>

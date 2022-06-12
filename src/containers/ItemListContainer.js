@@ -1,33 +1,33 @@
 import { useState, useEffect } from 'react';
 import { ItemList } from '../components/ItemList';
-import productList from '../mocks/productList';
 import { useParams } from 'react-router-dom';
 
+//FIREBASE - FIRESTORE
+import { collection, query, getDocs, where } from 'firebase/firestore';
+import { db } from '../firebase/firebaseConfig';
+
 const ItemListContainer = ({ greeting }) => {
-  /* -- Items -- */
-
-  const [products, setProducts] = useState([]);
+  const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
   const { category } = useParams();
 
   useEffect(() => {
-    setIsLoading(true);
-    const myPromise = new Promise((resolve, reject) => {
-      const productosFiltrados = productList.filter(prod => prod.category === category);
-      setTimeout(() => {
-        if (category === undefined) {
-          resolve(productList);
-        } else {
-          resolve(productosFiltrados);
-        }
-      }, 3000);
-    });
-
-    myPromise.then(result => {
-      setProducts(result);
+    const getProducts = async () => {
+      const q = query(collection(db, 'products'), where('category', '==', category));
+      const docs = [];
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(doc => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.id, ' => ', doc.data());
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      // console.log(docs);
+      setProductsData(docs);
+    };
+    getProducts();
+    setTimeout(() => {
       setIsLoading(false);
-    });
+    }, 1000);
   }, [category]);
 
   if (isLoading) {
@@ -51,8 +51,6 @@ const ItemListContainer = ({ greeting }) => {
     );
   }
 
-  /* -------------------------- */
-
   return (
     <div className='hero min-h-screen'>
       <div className='hero-overlay bg-opacity-60'></div>
@@ -64,8 +62,11 @@ const ItemListContainer = ({ greeting }) => {
             deleniti eaque aut repudiandae et a id nisi.
           </p>
           <button className='btn btn-primary mb-4'>{greeting}</button>
-          {/* <ItemCount stock={5} count={count} onAdd={onAdd} onSubtract={onSubtract} /> */}
-          <ItemList products={products} />
+          <ItemList products={productsData} />
+          {/* <h1>Firebase</h1>
+          {productsData?.map(data => {
+            return <ItemList items={data} />;
+          })} */}
         </div>
       </div>
     </div>

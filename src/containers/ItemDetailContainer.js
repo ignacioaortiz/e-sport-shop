@@ -3,25 +3,33 @@ import productList from '../mocks/productList';
 import { ItemDetail } from '../components/ItemDetail';
 import { useParams } from 'react-router';
 
+//FIREBASE - FIRESTORE
+import { collection, query, getDocs, where, documentId } from 'firebase/firestore';
+import { db } from '../firebase/firebaseConfig';
+
 const ItemDetailContainer = () => {
-  let id = useParams();
-  let userID = id.id;
-  const [items, setItems] = useState([]);
+  const { id } = useParams();
+  const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true);
-    const getItem = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(productList[userID]);
-      }, 2000);
-    });
-
-    getItem.then(result => {
-      setItems(result);
+    const getProducts = async () => {
+      const q = query(collection(db, 'products'), where(documentId(), '==', id));
+      const docs = [];
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach(doc => {
+        // doc.data() is never undefined for query doc snapshots
+        // console.log(doc.id, ' => ', doc.data());
+        docs.push({ ...doc.data(), id: doc.id });
+      });
+      // console.log(docs);
+      setProductsData(docs);
+    };
+    getProducts();
+    setTimeout(() => {
       setIsLoading(false);
-    });
-  }, []);
+    }, 1000);
+  }, [id]);
 
   if (isLoading) {
     return (
@@ -45,7 +53,9 @@ const ItemDetailContainer = () => {
   }
   return (
     <div className='flex flex-col items-center'>
-      <ItemDetail items={items} />
+      {productsData?.map(data => {
+        return <ItemDetail items={data} />;
+      })}
     </div>
   );
 };
