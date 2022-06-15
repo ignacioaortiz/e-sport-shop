@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import productList from '../mocks/productList';
 import { ItemDetail } from '../components/ItemDetail';
 import { useParams } from 'react-router';
 
@@ -54,7 +53,7 @@ const ItemDetailContainer = () => {
   return (
     <div className='flex flex-col items-center'>
       {productsData?.map(data => {
-        return <ItemDetail items={data} />;
+        return <ItemDetail items={data} key={data.id} />;
       })}
     </div>
   );

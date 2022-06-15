@@ -16,18 +16,18 @@ export const Cart = () => {
           <h3 className='title'>Cart</h3>
 
           {cartList.map(prod => (
-            <Link to={`/item/${prod.id}`}>
-              <div key={prod.id} className='cart w-92 bg-base-100 shadow-xl mt-8'>
-                <img src={prod.images} className='rounded h-32 mx-6' alt='' />
+            <Link to={`/item/${prod.id}`} key={prod.id}>
+              <div className='cart w-92 bg-base-100 shadow-xl mt-8'>
+                <img src={prod.img} className='rounded h-32 mx-6' alt='' />
                 <div className='mx-3'>
                   <h4 className='text-lg my-3'>{prod.name}</h4>
                   <div className='flex flex-col items-start mb-3'>
-                    <p>Cantidad: {prod.cantidad}</p>
+                    <p>Quantity: {prod.cantidad}</p>
                     <p>Price: {prod.price}</p>
                     <p>Subtotal: {prod.price * prod.cantidad}</p>
                   </div>
                 </div>
-                <button key={prod.id} onClick={() => removeProduct(prod.id)}>
+                <button onClick={() => removeProduct(prod.id)}>
                   <svg
                     className='w-6 h-6'
                     fill='none'
@@ -49,12 +49,12 @@ export const Cart = () => {
 
           <h4 className='text-2xl font-bold py-8'>Total: {totalBuy()}</h4>
           <div className='pt-8 flex'>
-            {/* <Link to='/checkout'>
-              <button className='btn btn-primary btn-sm mr-1'>Check-Out</button>
-            </Link> */}
-            <button className='btn btn-primary btn-sm ml-1' onClick={emptyCart}>
-              Limpiar Carrito
+            <button className='btn btn-primary btn-sm mr-1' onClick={emptyCart}>
+              Clean Cart
             </button>
+            <Link to='/checkout'>
+              <button className='btn btn-primary btn-sm ml-1'>Check Out</button>
+            </Link>
           </div>
         </div>
       )}

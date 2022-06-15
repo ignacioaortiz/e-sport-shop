@@ -6,14 +6,16 @@ import { useParams } from 'react-router-dom';
 import { collection, query, getDocs, where } from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 
-const ItemListContainer = ({ greeting }) => {
+const ItemListContainer = () => {
   const [productsData, setProductsData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { category } = useParams();
 
   useEffect(() => {
     const getProducts = async () => {
-      const q = query(collection(db, 'products'), where('category', '==', category));
+      const q = category
+        ? query(collection(db, 'products'), where('category', '==', category))
+        : query(collection(db, 'products'));
       const docs = [];
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach(doc => {
@@ -56,17 +58,7 @@ const ItemListContainer = ({ greeting }) => {
       <div className='hero-overlay bg-opacity-60'></div>
       <div className='hero-content text-center text-neutral-content'>
         <div className='max-w-md flex flex-col items-center'>
-          <h1 className='mb-5 text-5xl font-bold'>Hello there</h1>
-          <p className='mb-5'>
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In
-            deleniti eaque aut repudiandae et a id nisi.
-          </p>
-          <button className='btn btn-primary mb-4'>{greeting}</button>
           <ItemList products={productsData} />
-          {/* <h1>Firebase</h1>
-          {productsData?.map(data => {
-            return <ItemList items={data} />;
-          })} */}
         </div>
       </div>
     </div>

@@ -19,23 +19,28 @@ const NavBar = () => {
           </label>
           <ul tabIndex='0' className='menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52'>
             <Link to='/'>
-              <a>Home</a>
+              <span>Home</span>
             </Link>
-            <li class='menu-title'>
+            <li className='menu-title'>
               <span>Shop</span>
             </li>
             <Link to='category/Pro_Kit'>
-              <a>Pro Kit</a>
+              <span>Pro Kit</span>
             </Link>
             <Link to='category/Crest_Collection'>
-              <a>Crest Collection</a>
+              <span>Crest Collection</span>
+            </Link>
+            <Link to='products'>
+              <li className='menu-title'>
+                <span>Ver Todos</span>
+              </li>
             </Link>
           </ul>
         </div>
       </div>
       <div className='navbar-center'>
         <Link to='/'>
-          <a className='btn btn-ghost normal-case text-xl'>medusa e-sports</a>
+          <span className='btn btn-ghost normal-case text-xl'>medusa</span>
         </Link>
       </div>
       <CartWidget />
