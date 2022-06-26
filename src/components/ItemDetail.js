@@ -14,23 +14,24 @@ const ItemDetail = ({ items }) => {
   const [wasClicked, setwasClicked] = useState(false);
 
   return (
-    <div className='card card-side w-92 bg-base-100 shadow-xl my-4 mx-2'>
+    <div className='card w-80 bg-primary-focus shadow-xl my-8 mx-2'>
       <figure>
         <img src={items.img} />
       </figure>
       <div className='card-body justify-center'>
         <h2 className='card-title justify-center'>{items.name}</h2>
-        <p>{items.price}</p>
+        <p>US${items.price}</p>
+        <p className='text-xs'>{items.description}</p>
         {wasClicked ? (
           <>
-            <div className='card-actions justify-center'>
-              <Link to='/'>
+            <div className='card-actions justify-center mt-2'>
+              <Link to='/products'>
                 {' '}
-                <button className='btn btn-primary btn-sm'> Seguir comprando </button>
+                <button className='btn bg-primary-content btn-sm'> Seguir comprando </button>
               </Link>
               <Link to='/cart'>
                 {' '}
-                <button className='btn btn-primary btn-sm'> Ir al Carrito </button>
+                <button className='btn bg-primary-content btn-sm'> Ir al Carrito </button>
               </Link>
             </div>
           </>

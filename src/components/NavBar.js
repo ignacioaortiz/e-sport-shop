@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const NavBar = () => {
   return (
-    <div className='navbar bg-base-100'>
+    <div className='navbar bg-primary-focus rounded-lg'>
       <div className='navbar-start'>
         <div className='dropdown'>
           <label tabIndex='0' className='btn btn-ghost btn-circle'>
@@ -27,8 +27,11 @@ const NavBar = () => {
             <Link to='category/Pro_Kit'>
               <span>Pro Kit</span>
             </Link>
-            <Link to='category/Crest_Collection'>
-              <span>Crest Collection</span>
+            <Link to='category/Apparel'>
+              <span>Apparel</span>
+            </Link>
+            <Link to='category/Mice&Pads'>
+              <span>Mice & Pads</span>
             </Link>
             <Link to='products'>
               <li className='menu-title'>

@@ -1,6 +1,6 @@
 export const MessageSuccess = ({ purchaseID }) => {
   return (
-    <div class='alert alert-success shadow-lg'>
+    <div class='alert alert-success shadow-lg text-xs mt-4'>
       <div>
         <svg
           xmlns='http://www.w3.org/2000/svg'

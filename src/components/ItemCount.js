@@ -12,16 +12,18 @@ const ItemCount = ({ initial, stock, onAdd }) => {
   };
 
   return (
-    <div className='btn-group w-24 justify-center'>
-      <button className='btn btn-xs' onClick={handlerRm}>
-        -
-      </button>
-      <button className='btn btn-xs'>{count}</button>
-      <button className='btn btn-xs' onClick={handlerAdd}>
-        +
-      </button>
-      <div className='card-actions'>
-        <button className='btn btn-primary mt-4' onClick={() => onAdd(count)}>
+    <div className=' w-92 justify-center mt-2'>
+      <div className='btn-group justify-center'>
+        <button className='btn btn-xs' onClick={handlerRm}>
+          -
+        </button>
+        <button className='btn btn-xs'>{count}</button>
+        <button className='btn btn-xs' onClick={handlerAdd}>
+          +
+        </button>
+      </div>
+      <div className='card-actions justify-center'>
+        <button className='btn bg-primary-content mt-4' onClick={() => onAdd(count)}>
           Buy
         </button>
       </div>

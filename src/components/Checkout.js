@@ -44,36 +44,42 @@ export const Checkout = () => {
   };
 
   return (
-    <div>
-      <h1>Check Out</h1>
-      <form onSubmit={onSubmit}>
-        <input
-          className='input w-full max-w-xs mb-4'
-          type='text'
-          placeholder='Name'
-          name='name'
-          value={buyer.name}
-          onChange={handleOnChange}
-        />
-        <input
-          className='input w-full max-w-xs mb-4'
-          type='text'
-          placeholder='Phone'
-          name='phone'
-          value={buyer.phone}
-          onChange={handleOnChange}
-        />
-        <input
-          className='input w-full max-w-xs mb-4'
-          type='text'
-          placeholder='Email'
-          name='email'
-          value={buyer.email}
-          onChange={handleOnChange}
-        />
-        <button className='btn btn-primary'>Send</button>
-      </form>
-      {purchaseID && <MessageSuccess purchaseID={purchaseID} />}
+    <div className='hero min-h-screen'>
+      <div className='hero-overlay bg-opacity-60'>
+        <div className='hero-content text-center text-neutral-content h-full'>
+          <div className='max-w-md flex flex-col items-center'>
+            <form onSubmit={onSubmit}>
+              <input
+                className='input w-full max-w-xs mb-4 bg-primary-content'
+                type='text'
+                placeholder='Name'
+                name='name'
+                value={buyer.name}
+                onChange={handleOnChange}
+              />
+              <input
+                className='input w-full max-w-xs mb-4 bg-primary-content'
+                type='text'
+                placeholder='Phone'
+                name='phone'
+                value={buyer.phone}
+                onChange={handleOnChange}
+              />
+              <input
+                className='input w-full max-w-xs mb-4 bg-primary-content'
+                type='text'
+                placeholder='Email'
+                name='email'
+                value={buyer.email}
+                onChange={handleOnChange}
+              />
+              <br />
+              <button className='btn bg-primary-focus'>Send</button>
+            </form>
+            {purchaseID && <MessageSuccess purchaseID={purchaseID} />}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
