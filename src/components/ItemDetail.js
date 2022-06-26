@@ -16,7 +16,7 @@ const ItemDetail = ({ items }) => {
   return (
     <div className='card w-80 bg-primary-focus shadow-xl my-8 mx-2'>
       <figure>
-        <img src={items.img} />
+        <img src={items.img} alt='Imagen del Producto' />
       </figure>
       <div className='card-body justify-center'>
         <h2 className='card-title justify-center'>{items.name}</h2>
