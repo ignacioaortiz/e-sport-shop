@@ -10,6 +10,7 @@ const initialState = {
   name: '',
   phone: '',
   email: '',
+  email_confirm: '',
 };
 
 export const Checkout = () => {
@@ -67,14 +68,24 @@ export const Checkout = () => {
               />
               <input
                 className='input w-full max-w-xs mb-4 bg-primary-content'
-                type='text'
+                type='email'
                 placeholder='Email'
                 name='email'
                 value={buyer.email}
                 onChange={handleOnChange}
               />
+              <input
+                className='input w-full max-w-xs mb-4 bg-primary-content'
+                type='email'
+                placeholder='Email Confirm'
+                name='email_confirm'
+                value={buyer.email_confirm}
+                onChange={handleOnChange}
+              />
               <br />
-              <button className='btn bg-primary-focus'>Send</button>
+              <button type='submit' className='btn bg-primary-focus'>
+                Send
+              </button>
             </form>
             {purchaseID && <MessageSuccess purchaseID={purchaseID} />}
           </div>
