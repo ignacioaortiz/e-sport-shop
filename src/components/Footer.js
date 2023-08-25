@@ -5,7 +5,13 @@ export const Footer = () => {
         <p>
           Copyright © 2022 - All right reserved by{' '}
           <b>
-            <a href='https://github.com/ortizia'>@ortizia</a>
+            <a
+              href='https://github.com/ignacioaortiz'
+              target='_blank'
+              rel='noreferrer'
+            >
+              @ignacioaortiz
+            </a>
           </b>
         </p>
       </div>
