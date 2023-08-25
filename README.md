@@ -38,4 +38,4 @@ Start the server
 
 ## Authors
 
-- [@ortizia](https://github.com/ortizia)
+- [@ignacioaortiz](https://github.com/ignacioaortiz)
