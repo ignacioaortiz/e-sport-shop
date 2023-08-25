@@ -3,7 +3,13 @@ import { ItemDetail } from '../components/ItemDetail';
 import { useParams } from 'react-router';
 
 //FIREBASE - FIRESTORE
-import { collection, query, getDocs, where, documentId } from 'firebase/firestore';
+import {
+  collection,
+  query,
+  getDocs,
+  where,
+  documentId,
+} from 'firebase/firestore';
 import { db } from '../firebase/firebaseConfig';
 import { Spinner } from '../components/Spinner';
 
@@ -14,10 +20,13 @@ const ItemDetailContainer = () => {
 
   useEffect(() => {
     const getProducts = async () => {
-      const q = query(collection(db, 'products'), where(documentId(), '==', id));
+      const q = query(
+        collection(db, 'products'),
+        where(documentId(), '==', id)
+      );
       const docs = [];
       const querySnapshot = await getDocs(q);
-      querySnapshot.forEach(doc => {
+      querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
         // console.log(doc.id, ' => ', doc.data());
         docs.push({ ...doc.data(), id: doc.id });
@@ -37,7 +46,7 @@ const ItemDetailContainer = () => {
         <Spinner />
       ) : (
         <div className='flex flex-col items-center'>
-          {productsData?.map(data => {
+          {productsData?.map((data) => {
             return <ItemDetail items={data} key={data.id} />;
           })}
         </div>

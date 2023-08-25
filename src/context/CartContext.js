@@ -1,5 +1,4 @@
 import { createContext, useState, useContext } from 'react';
-import productList from '../mocks/productList';
 
 export const CartContext = createContext([]);
 

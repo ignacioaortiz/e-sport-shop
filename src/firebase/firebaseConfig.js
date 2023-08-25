@@ -2,12 +2,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyAuIUofUF_o9XSD7hyclCoKO0xPSP5L5Hc',
-  authDomain: 'e-sports-shop.firebaseapp.com',
-  projectId: 'e-sports-shop',
-  storageBucket: 'e-sports-shop.appspot.com',
-  messagingSenderId: '108125733341',
-  appId: '1:108125733341:web:9063734d27e0c95283f634',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAINE,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKER,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
 };
 
 // Initialize Firebase

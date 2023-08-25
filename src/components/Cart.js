@@ -13,7 +13,7 @@ export const Cart = () => {
         </>
       ) : (
         <div className='flex flex-col items-center h-full my-8'>
-          {cartList.map(prod => (
+          {cartList.map((prod) => (
             <>
               <div className='card card-body w-60 h-92 bg-primary-focus mb-8'>
                 <Link to={`/item/${prod.id}`} key={prod.id}>
@@ -28,7 +28,10 @@ export const Cart = () => {
                   </div>
                 </Link>
                 <div>
-                  <button className='btn bg-primary-content' onClick={() => removeProduct(prod.id)}>
+                  <button
+                    className='btn bg-primary-content'
+                    onClick={() => removeProduct(prod.id)}
+                  >
                     <svg
                       className='w-6 h-6'
                       fill='none'
